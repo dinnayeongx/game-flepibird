@@ -2,6 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
+//test git push
+// kalo mau update perubahan ke github
+// pindah direktori dulu di terminal pake --> cd direktorinetbeans
+// cek branch dulu biar ga salah branch pake --> git branch --> git branch -r 
+// pindah branch kalo bukan di branch masing-masing --> git checkout namabranchkalian
+// kalo ada perubahan di kode pake -->> git add .
+// jangan lupa di commit pake -->> git commit -m "blabla bebas"
+// kalo udah langsung push ke github pake --> git push origin namabranchkalian
+// udah liat di github ada perubahan apa ndak
 
 /**
  *
@@ -120,8 +129,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
     }
-    
-    //abcde
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel FLEPIBIRD;
