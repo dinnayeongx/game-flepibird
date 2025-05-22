@@ -56,6 +56,11 @@ public class Menu extends javax.swing.JFrame {
 
         MulaiBtn.setFont(new java.awt.Font("Press Start 2P", 0, 12)); // NOI18N
         MulaiBtn.setText("MULAI");
+        MulaiBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MulaiBtnActionPerformed(evt);
+            }
+        });
         getContentPane().add(MulaiBtn);
         MulaiBtn.setBounds(552, 324, 172, 63);
 
@@ -88,12 +93,19 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void PetunjukBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PetunjukBtnActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_PetunjukBtnActionPerformed
 
     private void KeluarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KeluarBtnActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_KeluarBtnActionPerformed
+
+    private void MulaiBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MulaiBtnActionPerformed
+        ChooseCharacter karakter = new ChooseCharacter();
+        karakter.setVisible(true);
+        
+        this.dispose();
+    }//GEN-LAST:event_MulaiBtnActionPerformed
 
     /**
      * @param args the command line arguments

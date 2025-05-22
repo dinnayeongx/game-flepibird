@@ -12,7 +12,7 @@ public class FlepiBird extends JFrame {
     JPanel mainPanel;
     GamePanelImpl gamePanel;
 
-    public FlepiBird() {
+    public FlepiBird(String sharkpng) {
         setTitle("FlepiBird");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
@@ -21,7 +21,8 @@ public class FlepiBird extends JFrame {
         mainPanel = new JPanel(cardLayout);
 
         MainMenuPanel menuPanel = new MainMenuPanel(this);
-        gamePanel = new GamePanelImpl(this);
+        String karakterPath = null;
+        gamePanel = new GamePanelImpl(this, karakterPath);
 
         mainPanel.add(menuPanel, "Menu");
         mainPanel.add(gamePanel, "Game");
@@ -43,7 +44,7 @@ public class FlepiBird extends JFrame {
     }
 
     public static void main(String[] args) {
-        new FlepiBird();
+        new FlepiBird("shark.png");
     }
 }
 
@@ -125,7 +126,7 @@ class GamePanelImpl extends GamePanel {
     Random rand = new Random();
     FlepiBird frame;
 
-    GamePanelImpl(FlepiBird frame) {
+    GamePanelImpl(FlepiBird frame, String karakterPath) {
         this.frame = frame;
         this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
         this.setBackground(Color.CYAN);
@@ -133,7 +134,7 @@ class GamePanelImpl extends GamePanel {
         this.addKeyListener(this);
 
         try {
-            characterImage = ImageIO.read(new File("bombardinocrocs.png"));
+            characterImage = ImageIO.read(new File(karakterPath));
         } catch (IOException ex) {
             System.out.println("No image.");
         }

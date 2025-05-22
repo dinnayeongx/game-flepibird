@@ -14,6 +14,7 @@ public class ChooseCharacter extends javax.swing.JFrame {
      */
     public ChooseCharacter() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -38,7 +39,7 @@ public class ChooseCharacter extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(204, 204, 204));
         jButton1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton1.setText("Flepi Bird");
+        jButton1.setText("Shark");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -50,12 +51,17 @@ public class ChooseCharacter extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(204, 204, 204));
         jButton2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jButton2.setText("Bombardinocrocs");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton2);
         jButton2.setBounds(780, 510, 190, 110);
 
         jLabel4.setBackground(new java.awt.Color(204, 204, 204));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pilihbird.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sharkpilih.png"))); // NOI18N
         getContentPane().add(jLabel4);
         jLabel4.setBounds(240, 340, 220, 150);
 
@@ -63,7 +69,7 @@ public class ChooseCharacter extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pilihbuaya.png"))); // NOI18N
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(740, 320, 240, 160);
+        jLabel2.setBounds(750, 330, 240, 160);
 
         FLEPIBIRD.setBackground(new java.awt.Color(255, 255, 255));
         FLEPIBIRD.setFont(new java.awt.Font("Karmatic Arcade", 0, 72)); // NOI18N
@@ -86,8 +92,18 @@ public class ChooseCharacter extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        FlepiBird shark = new FlepiBird("shark.png");
+        shark.setVisible(true);
+        
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        FlepiBird buaya = new FlepiBird("bombardinocrocs.png");
+        buaya.setVisible(true);
+        
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
