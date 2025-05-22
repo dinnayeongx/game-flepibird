@@ -2,27 +2,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-//test git push
-// kalo mau update perubahan ke github
-// pindah direktori dulu di terminal pake --> cd direktorinetbeans
-// cek branch dulu biar ga salah branch pake --> git branch --> git branch -r 
-// pindah branch kalo bukan di branch masing-masing --> git checkout namabranchkalian
-// kalo ada perubahan di kode pake -->> git add .
-// jangan lupa di commit pake -->> git commit -m "blabla bebas"
-// kalo udah langsung push ke github pake --> git push origin namabranchkalian
-// udah liat di github ada perubahan apa ndak
 
 /**
  *
- * @author User
+ * @author Annisa maulidi
  */
-
-public class Menu extends javax.swing.JFrame {
+public class ChooseCharacter extends javax.swing.JFrame {
 
     /**
-     * Creates new form Menu
+     * Creates new form ChooseCharacter
      */
-    public Menu() {
+    public ChooseCharacter() {
         initComponents();
     }
 
@@ -35,65 +25,69 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         FLEPIBIRD = new javax.swing.JLabel();
-        MulaiBtn = new javax.swing.JButton();
-        PetunjukBtn = new javax.swing.JButton();
-        KeluarBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1280, 720));
         getContentPane().setLayout(null);
 
+        jButton1.setBackground(new java.awt.Color(204, 204, 204));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jButton1.setText("Flepi Bird");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(260, 510, 190, 110);
+
+        jButton2.setBackground(new java.awt.Color(204, 204, 204));
+        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jButton2.setText("Bombardinocrocs");
+        getContentPane().add(jButton2);
+        jButton2.setBounds(780, 510, 190, 110);
+
+        jLabel4.setBackground(new java.awt.Color(204, 204, 204));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pilihbird.png"))); // NOI18N
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(240, 340, 220, 150);
+
+        jLabel2.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pilihbuaya.png"))); // NOI18N
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(740, 320, 240, 160);
+
         FLEPIBIRD.setBackground(new java.awt.Color(255, 255, 255));
         FLEPIBIRD.setFont(new java.awt.Font("Karmatic Arcade", 0, 72)); // NOI18N
         FLEPIBIRD.setForeground(new java.awt.Color(255, 255, 255));
         FLEPIBIRD.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        FLEPIBIRD.setText("FLEPIBIRD");
+        FLEPIBIRD.setText("PILIH KARAKTER");
         FLEPIBIRD.setName(""); // NOI18N
         getContentPane().add(FLEPIBIRD);
         FLEPIBIRD.setBounds(0, 150, 1280, 79);
 
-        MulaiBtn.setFont(new java.awt.Font("Press Start 2P", 0, 12)); // NOI18N
-        MulaiBtn.setText("MULAI");
-        getContentPane().add(MulaiBtn);
-        MulaiBtn.setBounds(552, 324, 172, 63);
-
-        PetunjukBtn.setFont(new java.awt.Font("Press Start 2P", 0, 12)); // NOI18N
-        PetunjukBtn.setText("PETUNJUK");
-        PetunjukBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PetunjukBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(PetunjukBtn);
-        PetunjukBtn.setBounds(552, 405, 172, 63);
-
-        KeluarBtn.setFont(new java.awt.Font("Press Start 2P", 0, 12)); // NOI18N
-        KeluarBtn.setText("KELUAR");
-        KeluarBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                KeluarBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(KeluarBtn);
-        KeluarBtn.setBounds(552, 486, 172, 63);
-
+        jLabel1.setBackground(new java.awt.Color(204, 204, 204));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/backgroundFlepi2.jpg"))); // NOI18N
-        jLabel1.setText("jLabel1");
+        jLabel1.setMaximumSize(new java.awt.Dimension(1321, 720));
+        jLabel1.setMinimumSize(new java.awt.Dimension(1321, 720));
+        jLabel1.setPreferredSize(new java.awt.Dimension(1321, 720));
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, 0, 1280, 720);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void PetunjukBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PetunjukBtnActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_PetunjukBtnActionPerformed
-
-    private void KeluarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KeluarBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_KeluarBtnActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -112,30 +106,30 @@ public class Menu extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ChooseCharacter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ChooseCharacter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ChooseCharacter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ChooseCharacter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Menu().setVisible(true);
+                new ChooseCharacter().setVisible(true);
             }
         });
     }
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel FLEPIBIRD;
-    private javax.swing.JButton KeluarBtn;
-    private javax.swing.JButton MulaiBtn;
-    private javax.swing.JButton PetunjukBtn;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
 }
