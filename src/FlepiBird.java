@@ -1,4 +1,3 @@
-
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
@@ -18,11 +17,9 @@ public class FlepiBird extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
 
-        // CardLayout
         cardLayout = new CardLayout();
         mainPanel = new JPanel(cardLayout);
 
-        // Menu dan Game Panel
         MainMenuPanel menuPanel = new MainMenuPanel(this);
         gamePanel = new GamePanelImpl(this);
 
@@ -38,6 +35,7 @@ public class FlepiBird extends JFrame {
     public void showGame() {
         cardLayout.show(mainPanel, "Game");
         gamePanel.requestFocusInWindow();
+        gamePanel.resetGame(); 
     }
 
     public void showMenu() {
@@ -58,9 +56,8 @@ class MainMenuPanel extends JPanel {
 
         setPreferredSize(new Dimension(screenWidth, screenHeight));
         setBackground(Color.ORANGE);
-        setLayout(null); // Masih menggunakan null layout
+        setLayout(null);
 
-        // Title label
         JLabel title = new JLabel("FLEPIBIRD", SwingConstants.CENTER);
         int titleWidth = (int) (screenWidth * 0.4);
         int titleHeight = (int) (screenHeight * 0.1);
@@ -70,7 +67,6 @@ class MainMenuPanel extends JPanel {
         title.setBounds((screenWidth - titleWidth) / 2, (int) (screenHeight * 0.2), titleWidth, titleHeight);
         add(title);
 
-        // Start button
         JButton startButton = new JButton("Mulai");
         int buttonWidth = (int) (screenWidth * 0.13);
         int buttonHeight = (int) (screenHeight * 0.07);
@@ -81,7 +77,6 @@ class MainMenuPanel extends JPanel {
         startButton.addActionListener(e -> frame.showGame());
         add(startButton);
 
-        // Help button
         JButton helpButton = new JButton("Petunjuk");
         helpButton.setFont(new Font("Arial", Font.BOLD, buttonFontSize));
         helpButton.setBounds((screenWidth - buttonWidth) / 2, (int) (screenHeight * 0.52), buttonWidth, buttonHeight);
@@ -90,7 +85,6 @@ class MainMenuPanel extends JPanel {
                 "Petunjuk", JOptionPane.INFORMATION_MESSAGE));
         add(helpButton);
 
-        // Exit button
         JButton exitButton = new JButton("Keluar");
         exitButton.setFont(new Font("Arial", Font.BOLD, buttonFontSize));
         exitButton.setBounds((screenWidth - buttonWidth) / 2, (int) (screenHeight * 0.64), buttonWidth, buttonHeight);
@@ -100,7 +94,6 @@ class MainMenuPanel extends JPanel {
 }
 
 abstract class GamePanel extends JPanel implements ActionListener, KeyListener {
-
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     int WIDTH = screenSize.width;
     int HEIGHT = screenSize.height;
@@ -109,16 +102,20 @@ abstract class GamePanel extends JPanel implements ActionListener, KeyListener {
 class GamePanelImpl extends GamePanel {
 
     Timer timer;
+    Timer countdownTimer;
+    int countdown = 3;
+    boolean isCountingDown = true;
+
     int characterY = HEIGHT / 2;
     int velocity = 0;
     int gravity = 2;
     int jumpStrength = -20;
     boolean gameOver = false;
     Image characterImage;
-    Rectangle characterRect; // Representasi persegi karakter untuk deteksi tabrakan dan skor
+    Rectangle characterRect;
 
     ArrayList<Rectangle> pipes = new ArrayList<>();
-    ArrayList<Boolean> pipePassed = new ArrayList<>(); // Menandai apakah pipa sudah dilewati
+    ArrayList<Boolean> pipePassed = new ArrayList<>();
     int pipeSpacing = 350;
     int pipeWidth = 100;
     int pipeGap = 300;
@@ -126,7 +123,7 @@ class GamePanelImpl extends GamePanel {
     int score = 0;
 
     Random rand = new Random();
-    FlepiBird frame;  // referensi ke JFrame utama
+    FlepiBird frame;
 
     GamePanelImpl(FlepiBird frame) {
         this.frame = frame;
@@ -141,10 +138,25 @@ class GamePanelImpl extends GamePanel {
             System.out.println("No image.");
         }
 
-        resetGame(); // Inisialisasi game termasuk pembuatan pipa pertama
+        resetGame(); 
+    }
 
-        timer = new Timer(20, this);
-        timer.start();
+    void startCountdown() {
+        isCountingDown = true;
+        countdown = 3;
+        repaint();
+
+        countdownTimer = new Timer(1000, e -> {
+            countdown--;
+            repaint();
+            if (countdown <= 0) {
+                countdownTimer.stop();
+                isCountingDown = false;
+                timer = new Timer(20, this);
+                timer.start();
+            }
+        });
+        countdownTimer.start();
     }
 
     public void paintComponent(Graphics g) {
@@ -172,6 +184,13 @@ class GamePanelImpl extends GamePanel {
         g.setFont(new Font("Arial", Font.BOLD, 48));
         g.drawString("Score: " + score, WIDTH / 100, HEIGHT / 20);
 
+        if (isCountingDown) {
+            g.setFont(new Font("Arial", Font.BOLD, 200));
+            g.setColor(Color.BLACK);
+            g.drawString(String.valueOf(countdown), WIDTH / 2 - 100, HEIGHT / 2);
+            return;
+        }
+
         if (gameOver) {
             g.setFont(new Font("Arial", Font.BOLD, 72));
             g.drawString("Game Over!", 650, HEIGHT / 2);
@@ -184,32 +203,29 @@ class GamePanelImpl extends GamePanel {
         int pipeHeight = 100 + rand.nextInt(HEIGHT / 2);
         pipes.add(new Rectangle(x, 0, pipeWidth, pipeHeight));
         pipes.add(new Rectangle(x, pipeHeight + pipeGap, pipeWidth, HEIGHT - pipeHeight - pipeGap));
-        pipePassed.add(false); // Tandai pipa baru sebagai belum dilewati
-        pipePassed.add(false); // Untuk pipa atas dan bawah
+        pipePassed.add(false);
+        pipePassed.add(false);
     }
 
     public void actionPerformed(ActionEvent e) {
-        if (!gameOver) {
+        if (!gameOver && !isCountingDown) {
             velocity += gravity;
             characterY += velocity;
-            characterRect.y = characterY; // Update posisi rectangle karakter
+            characterRect.y = characterY;
 
             for (int i = 0; i < pipes.size(); i++) {
                 Rectangle pipe = pipes.get(i);
                 pipe.x -= pipeSpeed;
 
-                // Hanya cek skor untuk pipa bagian atas (indeks genap) dan pastikan belum dilewati
                 if (i % 2 == 0 && !pipePassed.get(i) && pipe.x + pipeWidth < characterRect.x) {
                     score++;
-                    pipePassed.set(i, true); // Tandai pipa bagian atas sudah dilewati
-                    // Kita juga tandai pipa bagian bawah pasangannya agar tidak dihitung lagi
+                    pipePassed.set(i, true);
                     if (i + 1 < pipePassed.size()) {
                         pipePassed.set(i + 1, true);
                     }
                 }
             }
 
-            // Hapus pipa yang sudah sepenuhnya terlewat
             if (!pipes.isEmpty() && pipes.get(0).x + pipeWidth < 0) {
                 pipes.remove(0);
                 pipes.remove(0);
@@ -218,7 +234,6 @@ class GamePanelImpl extends GamePanel {
                 spawnPipe(1000);
             }
 
-            // Deteksi tabrakan
             for (Rectangle pipe : pipes) {
                 if (pipe.intersects(characterRect)) {
                     gameOver = true;
@@ -234,20 +249,18 @@ class GamePanelImpl extends GamePanel {
     }
 
     public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_SPACE && !gameOver) {
+        if (e.getKeyCode() == KeyEvent.VK_SPACE && !gameOver && !isCountingDown) {
             velocity = jumpStrength;
         } else if (e.getKeyCode() == KeyEvent.VK_R && gameOver) {
             resetGame();
         } else if (e.getKeyCode() == KeyEvent.VK_ESCAPE && gameOver) {
+            if (timer != null) timer.stop();
             frame.showMenu();
         }
     }
 
-    public void keyReleased(KeyEvent e) {
-    }
-
-    public void keyTyped(KeyEvent e) {
-    }
+    public void keyReleased(KeyEvent e) {}
+    public void keyTyped(KeyEvent e) {}
 
     void resetGame() {
         characterY = HEIGHT / 2;
@@ -255,10 +268,14 @@ class GamePanelImpl extends GamePanel {
         score = 0;
         pipes.clear();
         pipePassed.clear();
-        characterRect = new Rectangle(300, characterY, 50, 50); // Inisialisasi rectangle karakter
+        characterRect = new Rectangle(300, characterY, 50, 50);
         for (int i = 0; i < 3; i++) {
             spawnPipe(i * pipeSpacing + 800);
         }
         gameOver = false;
+
+        if (timer != null) timer.stop();
+        if (countdownTimer != null) countdownTimer.stop();
+        startCountdown();
     }
 }
