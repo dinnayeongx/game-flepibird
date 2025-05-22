@@ -20,11 +20,11 @@ public class FlepiBird extends JFrame {
         cardLayout = new CardLayout();
         mainPanel = new JPanel(cardLayout);
 
-        MainMenuPanel menuPanel = new MainMenuPanel(this);
-        String karakterPath = null;
+//        MainMenuPanel menuPanel = new MainMenuPanel(this);
+        String karakterPath = sharkpng;
         gamePanel = new GamePanelImpl(this, karakterPath);
 
-        mainPanel.add(menuPanel, "Menu");
+//        mainPanel.add(menuPanel, "Menu");
         mainPanel.add(gamePanel, "Game");
 
         add(mainPanel);
@@ -48,51 +48,51 @@ public class FlepiBird extends JFrame {
     }
 }
 
-class MainMenuPanel extends JPanel {
-
-    public MainMenuPanel(FlepiBird frame) {
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int screenWidth = screenSize.width;
-        int screenHeight = screenSize.height;
-
-        setPreferredSize(new Dimension(screenWidth, screenHeight));
-        setBackground(Color.ORANGE);
-        setLayout(null);
-
-        JLabel title = new JLabel("FLEPIBIRD", SwingConstants.CENTER);
-        int titleWidth = (int) (screenWidth * 0.4);
-        int titleHeight = (int) (screenHeight * 0.1);
-        int titleFontSize = (int) (screenHeight * 0.07);
-
-        title.setFont(new Font("Arial", Font.BOLD, titleFontSize));
-        title.setBounds((screenWidth - titleWidth) / 2, (int) (screenHeight * 0.2), titleWidth, titleHeight);
-        add(title);
-
-        JButton startButton = new JButton("Mulai");
-        int buttonWidth = (int) (screenWidth * 0.13);
-        int buttonHeight = (int) (screenHeight * 0.07);
-        int buttonFontSize = (int) (screenHeight * 0.035);
-
-        startButton.setFont(new Font("Arial", Font.BOLD, buttonFontSize));
-        startButton.setBounds((screenWidth - buttonWidth) / 2, (int) (screenHeight * 0.4), buttonWidth, buttonHeight);
-        startButton.addActionListener(e -> frame.showGame());
-        add(startButton);
-
-        JButton helpButton = new JButton("Petunjuk");
-        helpButton.setFont(new Font("Arial", Font.BOLD, buttonFontSize));
-        helpButton.setBounds((screenWidth - buttonWidth) / 2, (int) (screenHeight * 0.52), buttonWidth, buttonHeight);
-        helpButton.addActionListener(e -> JOptionPane.showMessageDialog(this,
-                "Tekan SPASI untuk melompat\nTekan R untuk mengulang saat Game Over",
-                "Petunjuk", JOptionPane.INFORMATION_MESSAGE));
-        add(helpButton);
-
-        JButton exitButton = new JButton("Keluar");
-        exitButton.setFont(new Font("Arial", Font.BOLD, buttonFontSize));
-        exitButton.setBounds((screenWidth - buttonWidth) / 2, (int) (screenHeight * 0.64), buttonWidth, buttonHeight);
-        exitButton.addActionListener(e -> System.exit(0));
-        add(exitButton);
-    }
-}
+//class MainMenuPanel extends JPanel {
+//
+//    public MainMenuPanel(FlepiBird frame) {
+//        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+//        int screenWidth = screenSize.width;
+//        int screenHeight = screenSize.height;
+//
+//        setPreferredSize(new Dimension(screenWidth, screenHeight));
+//        setBackground(Color.ORANGE);
+//        setLayout(null);
+//
+//        JLabel title = new JLabel("FLEPIBIRD", SwingConstants.CENTER);
+//        int titleWidth = (int) (screenWidth * 0.4);
+//        int titleHeight = (int) (screenHeight * 0.1);
+//        int titleFontSize = (int) (screenHeight * 0.07);
+//
+//        title.setFont(new Font("Arial", Font.BOLD, titleFontSize));
+//        title.setBounds((screenWidth - titleWidth) / 2, (int) (screenHeight * 0.2), titleWidth, titleHeight);
+//        add(title);
+//
+//        JButton startButton = new JButton("Mulai");
+//        int buttonWidth = (int) (screenWidth * 0.13);
+//        int buttonHeight = (int) (screenHeight * 0.07);
+//        int buttonFontSize = (int) (screenHeight * 0.035);
+//
+//        startButton.setFont(new Font("Arial", Font.BOLD, buttonFontSize));
+//        startButton.setBounds((screenWidth - buttonWidth) / 2, (int) (screenHeight * 0.4), buttonWidth, buttonHeight);
+//        startButton.addActionListener(e -> frame.showGame());
+//        add(startButton);
+//
+//        JButton helpButton = new JButton("Petunjuk");
+//        helpButton.setFont(new Font("Arial", Font.BOLD, buttonFontSize));
+//        helpButton.setBounds((screenWidth - buttonWidth) / 2, (int) (screenHeight * 0.52), buttonWidth, buttonHeight);
+//        helpButton.addActionListener(e -> JOptionPane.showMessageDialog(this,
+//                "Tekan SPASI untuk melompat\nTekan R untuk mengulang saat Game Over",
+//                "Petunjuk", JOptionPane.INFORMATION_MESSAGE));
+//        add(helpButton);
+//
+//        JButton exitButton = new JButton("Keluar");
+//        exitButton.setFont(new Font("Arial", Font.BOLD, buttonFontSize));
+//        exitButton.setBounds((screenWidth - buttonWidth) / 2, (int) (screenHeight * 0.64), buttonWidth, buttonHeight);
+//        exitButton.addActionListener(e -> System.exit(0));
+//        add(exitButton);
+//    }
+//}
 
 abstract class GamePanel extends JPanel implements ActionListener, KeyListener {
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
