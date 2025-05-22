@@ -8,6 +8,8 @@
  * @author User
  */
 
+
+
 public class Menu extends javax.swing.JFrame {
 
     /**
@@ -26,6 +28,7 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         FLEPIBIRD = new javax.swing.JLabel();
         MulaiBtn = new javax.swing.JButton();
         PetunjukBtn = new javax.swing.JButton();
@@ -34,7 +37,9 @@ public class Menu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1280, 720));
-        getContentPane().setLayout(null);
+        getContentPane().setLayout(new java.awt.CardLayout());
+
+        jPanel1.setLayout(null);
 
         FLEPIBIRD.setBackground(new java.awt.Color(255, 255, 255));
         FLEPIBIRD.setFont(new java.awt.Font("Karmatic Arcade", 0, 72)); // NOI18N
@@ -42,49 +47,72 @@ public class Menu extends javax.swing.JFrame {
         FLEPIBIRD.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         FLEPIBIRD.setText("FLEPIBIRD");
         FLEPIBIRD.setName(""); // NOI18N
-        getContentPane().add(FLEPIBIRD);
+        jPanel1.add(FLEPIBIRD);
         FLEPIBIRD.setBounds(0, 150, 1280, 79);
 
+        MulaiBtn.setBackground(new java.awt.Color(0, 102, 51));
         MulaiBtn.setFont(new java.awt.Font("Press Start 2P", 0, 12)); // NOI18N
+        MulaiBtn.setForeground(new java.awt.Color(255, 255, 255));
         MulaiBtn.setText("MULAI");
-        getContentPane().add(MulaiBtn);
+        MulaiBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MulaiBtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(MulaiBtn);
         MulaiBtn.setBounds(552, 324, 172, 63);
 
+        PetunjukBtn.setBackground(new java.awt.Color(0, 153, 255));
         PetunjukBtn.setFont(new java.awt.Font("Press Start 2P", 0, 12)); // NOI18N
+        PetunjukBtn.setForeground(new java.awt.Color(255, 255, 255));
         PetunjukBtn.setText("PETUNJUK");
         PetunjukBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PetunjukBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(PetunjukBtn);
+        jPanel1.add(PetunjukBtn);
         PetunjukBtn.setBounds(552, 405, 172, 63);
 
+        KeluarBtn.setBackground(new java.awt.Color(204, 0, 0));
         KeluarBtn.setFont(new java.awt.Font("Press Start 2P", 0, 12)); // NOI18N
+        KeluarBtn.setForeground(new java.awt.Color(255, 255, 255));
         KeluarBtn.setText("KELUAR");
         KeluarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 KeluarBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(KeluarBtn);
+        jPanel1.add(KeluarBtn);
         KeluarBtn.setBounds(552, 486, 172, 63);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/backgroundFlepi2.jpg"))); // NOI18N
-        jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1);
+        jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 1280, 720);
+
+        getContentPane().add(jPanel1, "card2");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void PetunjukBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PetunjukBtnActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_PetunjukBtnActionPerformed
 
     private void KeluarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KeluarBtnActionPerformed
-        // TODO add your handling code here:
+        System.exit(0);
     }//GEN-LAST:event_KeluarBtnActionPerformed
+
+    private void MulaiBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MulaiBtnActionPerformed
+        this.setVisible(false);
+
+        // Menjalankan game temanmu
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new FlepiBird(); // panggil game
+            }
+        });
+    }//GEN-LAST:event_MulaiBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -127,5 +155,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton MulaiBtn;
     private javax.swing.JButton PetunjukBtn;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
