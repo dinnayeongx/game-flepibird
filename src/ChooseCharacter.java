@@ -46,7 +46,7 @@ public class ChooseCharacter extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(260, 510, 190, 110);
+        jButton1.setBounds(260, 510, 190, 60);
 
         jButton2.setBackground(new java.awt.Color(204, 204, 204));
         jButton2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -57,7 +57,7 @@ public class ChooseCharacter extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(780, 510, 190, 110);
+        jButton2.setBounds(780, 510, 190, 60);
 
         jLabel4.setBackground(new java.awt.Color(204, 204, 204));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
