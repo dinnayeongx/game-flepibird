@@ -24,10 +24,7 @@ public class Menu extends javax.swing.JFrame {
      */
     public Menu() {
         initComponents();
-    }
-
-    Menu(FlepiBird aThis) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -97,7 +94,10 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void PetunjukBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PetunjukBtnActionPerformed
-        
+        Petunjuk petunjuk = new Petunjuk();
+        petunjuk.setVisible(true);
+
+        this.dispose();
     }//GEN-LAST:event_PetunjukBtnActionPerformed
 
     private void KeluarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KeluarBtnActionPerformed
@@ -107,7 +107,7 @@ public class Menu extends javax.swing.JFrame {
     private void MulaiBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MulaiBtnActionPerformed
         ChooseCharacter karakter = new ChooseCharacter();
         karakter.setVisible(true);
-        
+
         this.dispose();
     }//GEN-LAST:event_MulaiBtnActionPerformed
 
@@ -145,7 +145,6 @@ public class Menu extends javax.swing.JFrame {
             }
         });
     }
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel FLEPIBIRD;
