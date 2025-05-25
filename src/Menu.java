@@ -96,7 +96,7 @@ public class Menu extends javax.swing.JFrame {
     private void PetunjukBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PetunjukBtnActionPerformed
         Petunjuk petunjuk = new Petunjuk();
         petunjuk.setVisible(true);
-        
+
         this.dispose();
     }//GEN-LAST:event_PetunjukBtnActionPerformed
 
@@ -107,7 +107,7 @@ public class Menu extends javax.swing.JFrame {
     private void MulaiBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MulaiBtnActionPerformed
         ChooseCharacter karakter = new ChooseCharacter();
         karakter.setVisible(true);
-        
+
         this.dispose();
     }//GEN-LAST:event_MulaiBtnActionPerformed
 
