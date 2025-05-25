@@ -2,13 +2,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
+//test git push
+// kalo mau update perubahan ke github
+// pindah direktori dulu di terminal pake --> cd direktorinetbeans
+// cek branch dulu biar ga salah branch pake --> git branch --> git branch -r 
+// pindah branch kalo bukan di branch masing-masing --> git checkout namabranchkalian
+// kalo ada perubahan di kode pake -->> git add .
+// jangan lupa di commit pake -->> git commit -m "blabla bebas"
+// kalo udah langsung push ke github pake --> git push origin namabranchkalian
+// udah liat di github ada perubahan apa ndak
 
 /**
  *
  * @author User
  */
-
-
 
 public class Menu extends javax.swing.JFrame {
 
@@ -17,6 +24,7 @@ public class Menu extends javax.swing.JFrame {
      */
     public Menu() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -28,7 +36,6 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
         FLEPIBIRD = new javax.swing.JLabel();
         MulaiBtn = new javax.swing.JButton();
         PetunjukBtn = new javax.swing.JButton();
@@ -37,9 +44,7 @@ public class Menu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1280, 720));
-        getContentPane().setLayout(new java.awt.CardLayout());
-
-        jPanel1.setLayout(null);
+        getContentPane().setLayout(null);
 
         FLEPIBIRD.setBackground(new java.awt.Color(255, 255, 255));
         FLEPIBIRD.setFont(new java.awt.Font("Karmatic Arcade", 0, 72)); // NOI18N
@@ -47,71 +52,63 @@ public class Menu extends javax.swing.JFrame {
         FLEPIBIRD.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         FLEPIBIRD.setText("FLEPIBIRD");
         FLEPIBIRD.setName(""); // NOI18N
-        jPanel1.add(FLEPIBIRD);
+        getContentPane().add(FLEPIBIRD);
         FLEPIBIRD.setBounds(0, 150, 1280, 79);
 
-        MulaiBtn.setBackground(new java.awt.Color(0, 102, 51));
         MulaiBtn.setFont(new java.awt.Font("Press Start 2P", 0, 12)); // NOI18N
-        MulaiBtn.setForeground(new java.awt.Color(255, 255, 255));
         MulaiBtn.setText("MULAI");
         MulaiBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MulaiBtnActionPerformed(evt);
             }
         });
-        jPanel1.add(MulaiBtn);
+        getContentPane().add(MulaiBtn);
         MulaiBtn.setBounds(552, 324, 172, 63);
 
-        PetunjukBtn.setBackground(new java.awt.Color(0, 153, 255));
         PetunjukBtn.setFont(new java.awt.Font("Press Start 2P", 0, 12)); // NOI18N
-        PetunjukBtn.setForeground(new java.awt.Color(255, 255, 255));
         PetunjukBtn.setText("PETUNJUK");
         PetunjukBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PetunjukBtnActionPerformed(evt);
             }
         });
-        jPanel1.add(PetunjukBtn);
+        getContentPane().add(PetunjukBtn);
         PetunjukBtn.setBounds(552, 405, 172, 63);
 
-        KeluarBtn.setBackground(new java.awt.Color(204, 0, 0));
         KeluarBtn.setFont(new java.awt.Font("Press Start 2P", 0, 12)); // NOI18N
-        KeluarBtn.setForeground(new java.awt.Color(255, 255, 255));
         KeluarBtn.setText("KELUAR");
         KeluarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 KeluarBtnActionPerformed(evt);
             }
         });
-        jPanel1.add(KeluarBtn);
+        getContentPane().add(KeluarBtn);
         KeluarBtn.setBounds(552, 486, 172, 63);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/backgroundFlepi2.jpg"))); // NOI18N
-        jPanel1.add(jLabel1);
+        jLabel1.setText("jLabel1");
+        getContentPane().add(jLabel1);
         jLabel1.setBounds(0, 0, 1280, 720);
-
-        getContentPane().add(jPanel1, "card2");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void PetunjukBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PetunjukBtnActionPerformed
+        Petunjuk petunjuk = new Petunjuk();
+        petunjuk.setVisible(true);
         
+        this.dispose();
     }//GEN-LAST:event_PetunjukBtnActionPerformed
 
     private void KeluarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KeluarBtnActionPerformed
-        System.exit(0);
+        this.dispose();
     }//GEN-LAST:event_KeluarBtnActionPerformed
 
     private void MulaiBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MulaiBtnActionPerformed
-        this.setVisible(false);
-
-        // Menjalankan game temanmu
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FlepiBird(); // panggil game
-            }
-        });
+        ChooseCharacter karakter = new ChooseCharacter();
+        karakter.setVisible(true);
+        
+        this.dispose();
     }//GEN-LAST:event_MulaiBtnActionPerformed
 
     /**
@@ -155,6 +152,5 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton MulaiBtn;
     private javax.swing.JButton PetunjukBtn;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

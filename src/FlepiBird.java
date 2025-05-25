@@ -5,9 +5,6 @@ import java.util.ArrayList;
 import java.util.Random;
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.JFrame;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class FlepiBird extends JFrame {
 
@@ -15,7 +12,7 @@ public class FlepiBird extends JFrame {
     JPanel mainPanel;
     GamePanelImpl gamePanel;
 
-    public FlepiBird() {
+    public FlepiBird(String sharkpng) {
         setTitle("FlepiBird");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
@@ -23,76 +20,79 @@ public class FlepiBird extends JFrame {
         cardLayout = new CardLayout();
         mainPanel = new JPanel(cardLayout);
 
-        gamePanel = new GamePanelImpl(this);
+//        MainMenuPanel menuPanel = new MainMenuPanel(this);
+        String karakterPath = sharkpng;
+        gamePanel = new GamePanelImpl(this, karakterPath);
+
+//        mainPanel.add(menuPanel, "Menu");
         mainPanel.add(gamePanel, "Game");
 
         add(mainPanel);
         pack();
-        setSize(1280, 720);
         setVisible(true);
         setLocationRelativeTo(null);
-        
-        
-        
-        showGame();
     }
 
     public void showGame() {
         cardLayout.show(mainPanel, "Game");
         gamePanel.requestFocusInWindow();
-        gamePanel.resetGame(); 
+        gamePanel.resetGame();
+    }
+
+    public void showMenu() {
+        cardLayout.show(mainPanel, "Menu");
     }
 
     public static void main(String[] args) {
-        new FlepiBird();
+        new FlepiBird("shark.png");
     }
 }
 
-class MainMenuPanel extends JPanel {
-
-    public MainMenuPanel(FlepiBird frame) {
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int screenWidth = screenSize.width;
-        int screenHeight = screenSize.height;
-
-        setPreferredSize(new Dimension(screenWidth, screenHeight));
-        setBackground(Color.ORANGE);
-        setLayout(null);
-
-        JLabel title = new JLabel("FLEPIBIRD", SwingConstants.CENTER);
-        int titleWidth = (int) (screenWidth * 0.4);
-        int titleHeight = (int) (screenHeight * 0.1);
-        int titleFontSize = (int) (screenHeight * 0.07);
-
-        title.setFont(new Font("Arial", Font.BOLD, titleFontSize));
-        title.setBounds((screenWidth - titleWidth) / 2, (int) (screenHeight * 0.2), titleWidth, titleHeight);
-        add(title);
-
-        JButton startButton = new JButton("Mulai");
-        int buttonWidth = (int) (screenWidth * 0.13);
-        int buttonHeight = (int) (screenHeight * 0.07);
-        int buttonFontSize = (int) (screenHeight * 0.035);
-
-        startButton.setFont(new Font("Arial", Font.BOLD, buttonFontSize));
-        startButton.setBounds((screenWidth - buttonWidth) / 2, (int) (screenHeight * 0.4), buttonWidth, buttonHeight);
-        startButton.addActionListener(e -> frame.showGame());
-        add(startButton);
-
-        JButton helpButton = new JButton("Petunjuk");
-        helpButton.setFont(new Font("Arial", Font.BOLD, buttonFontSize));
-        helpButton.setBounds((screenWidth - buttonWidth) / 2, (int) (screenHeight * 0.52), buttonWidth, buttonHeight);
-        helpButton.addActionListener(e -> JOptionPane.showMessageDialog(this,
-                "Tekan SPASI untuk melompat\nTekan R untuk mengulang saat Game Over",
-                "Petunjuk", JOptionPane.INFORMATION_MESSAGE));
-        add(helpButton);
-
-        JButton exitButton = new JButton("Keluar");
-        exitButton.setFont(new Font("Arial", Font.BOLD, buttonFontSize));
-        exitButton.setBounds((screenWidth - buttonWidth) / 2, (int) (screenHeight * 0.64), buttonWidth, buttonHeight);
-        exitButton.addActionListener(e -> System.exit(0));
-        add(exitButton);
-    }
-}
+//class MainMenuPanel extends JPanel {
+//
+//    public MainMenuPanel(FlepiBird frame) {
+//        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+//        int screenWidth = screenSize.width;
+//        int screenHeight = screenSize.height;
+//
+//        setPreferredSize(new Dimension(screenWidth, screenHeight));
+//        setBackground(Color.ORANGE);
+//        setLayout(null);
+//
+//        JLabel title = new JLabel("FLEPIBIRD", SwingConstants.CENTER);
+//        int titleWidth = (int) (screenWidth * 0.4);
+//        int titleHeight = (int) (screenHeight * 0.1);
+//        int titleFontSize = (int) (screenHeight * 0.07);
+//
+//        title.setFont(new Font("Arial", Font.BOLD, titleFontSize));
+//        title.setBounds((screenWidth - titleWidth) / 2, (int) (screenHeight * 0.2), titleWidth, titleHeight);
+//        add(title);
+//
+//        JButton startButton = new JButton("Mulai");
+//        int buttonWidth = (int) (screenWidth * 0.13);
+//        int buttonHeight = (int) (screenHeight * 0.07);
+//        int buttonFontSize = (int) (screenHeight * 0.035);
+//
+//        startButton.setFont(new Font("Arial", Font.BOLD, buttonFontSize));
+//        startButton.setBounds((screenWidth - buttonWidth) / 2, (int) (screenHeight * 0.4), buttonWidth, buttonHeight);
+//        startButton.addActionListener(e -> frame.showGame());
+//        add(startButton);
+//
+//        JButton helpButton = new JButton("Petunjuk");
+//        helpButton.setFont(new Font("Arial", Font.BOLD, buttonFontSize));
+//        helpButton.setBounds((screenWidth - buttonWidth) / 2, (int) (screenHeight * 0.52), buttonWidth, buttonHeight);
+//        helpButton.addActionListener(e -> JOptionPane.showMessageDialog(this,
+//                "Tekan SPASI untuk melompat\nTekan R untuk mengulang saat Game Over",
+//                "Petunjuk", JOptionPane.INFORMATION_MESSAGE));
+//        add(helpButton);
+//
+//        JButton exitButton = new JButton("Keluar");
+//        exitButton.setFont(new Font("Arial", Font.BOLD, buttonFontSize));
+//        exitButton.setBounds((screenWidth - buttonWidth) / 2, (int) (screenHeight * 0.64), buttonWidth, buttonHeight);
+//        exitButton.addActionListener(e -> System.exit(0));
+//        add(exitButton);
+//    }
+//}
 
 abstract class GamePanel extends JPanel implements ActionListener, KeyListener {
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -125,33 +125,23 @@ class GamePanelImpl extends GamePanel {
 
     Random rand = new Random();
     FlepiBird frame;
-    
-    
 
-    GamePanelImpl(FlepiBird frame) {
+    GamePanelImpl(FlepiBird frame, String karakterPath) {
         this.frame = frame;
         this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
         this.setBackground(Color.CYAN);
         this.setFocusable(true);
         this.addKeyListener(this);
-        this.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-                if (!gameOver) {
-                    velocity = jumpStrength;
-                }
-            }
-        });
 
         try {
-            characterImage = ImageIO.read(new File("bombardinocrocs.png"));
+            characterImage = ImageIO.read(new File(karakterPath));
         } catch (IOException ex) {
             System.out.println("No image.");
         }
 
         resetGame(); 
     }
-    
+
     void startCountdown() {
         isCountingDown = true;
         countdown = 3;
@@ -203,18 +193,10 @@ class GamePanelImpl extends GamePanel {
         }
 
         if (gameOver) {
-            Font gameOverFont = new Font("Arial", Font.BOLD, 72);
-            g.setFont(gameOverFont);
-            FontMetrics metrics = g.getFontMetrics(gameOverFont);
-            int x = (WIDTH - metrics.stringWidth("Game Over!")) / 2;
-            int y = (HEIGHT - metrics.getHeight()) / 2 + metrics.getAscent();
-            g.drawString("Game Over!", x, y);
-
-            Font infoFont = new Font("Arial", Font.PLAIN, 36);
-            g.setFont(infoFont);
-            FontMetrics infoMetrics = g.getFontMetrics(infoFont);
-            int infoX = (WIDTH - infoMetrics.stringWidth("Tekan R untuk restart atau ESC untuk kembali ke menu")) / 2;
-            g.drawString("Tekan R untuk restart atau ESC untuk kembali ke menu", infoX, y + 100);
+            g.setFont(new Font("Arial", Font.BOLD, 72));
+            g.drawString("Game Over!", 650, HEIGHT / 2);
+            g.setFont(new Font("Arial", Font.PLAIN, 36));
+            g.drawString("Tekan R untuk restart atau ESC untuk kembali ke menu", 450, HEIGHT / 2 + 100);
         }
     }
 
@@ -273,19 +255,15 @@ class GamePanelImpl extends GamePanel {
         } else if (e.getKeyCode() == KeyEvent.VK_R && gameOver) {
             resetGame();
         } else if (e.getKeyCode() == KeyEvent.VK_ESCAPE && gameOver) {
-            if (frame instanceof JFrame) {
-                ((JFrame) frame).dispose(); // tutup jendela game
-            }
-
-            // Tampilkan kembali Menu GUI buatan NetBeans
-            javax.swing.SwingUtilities.invokeLater(() -> {
-                new Menu().setVisible(true); // tampilkan GUI Menu
-            });
+            if (timer != null) timer.stop();
+            frame.showMenu();
         }
     }
 
-    public void keyReleased(KeyEvent e) {}
-    public void keyTyped(KeyEvent e) {}
+    public void keyReleased(KeyEvent e) {
+    }
+    public void keyTyped(KeyEvent e) {
+    }
 
     void resetGame() {
         characterY = HEIGHT / 2;
