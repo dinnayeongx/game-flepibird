@@ -79,6 +79,7 @@ class GamePanelImpl extends GamePanel {
 
     Random rand = new Random();
     FlepiBird frame;
+    //DB db = new DB();
 
     GamePanelImpl(FlepiBird frame, String karakterPath) {
         this.frame = frame;
@@ -124,7 +125,7 @@ class GamePanelImpl extends GamePanel {
         g.fillRect(0, 0, WIDTH, HEIGHT);
 
         if (characterImage != null) {
-            g.drawImage(characterImage, characterRect.x, characterRect.y, 100, 100, null);
+            g.drawImage(characterImage, characterRect.x, characterRect.y, 80, 80, null);
         } else {
             g.setColor(Color.RED);
             g.fillOval(characterRect.x, characterRect.y, characterRect.width, characterRect.height);
@@ -147,6 +148,7 @@ class GamePanelImpl extends GamePanel {
         }
 
         if (gameOver) {
+            //db.saveScore("Player1", score);
             String text = "Game Over!";
             Font font = new Font("Arial", Font.BOLD, 72);
             g.setFont(font);
@@ -169,6 +171,9 @@ class GamePanelImpl extends GamePanel {
             int subY = y + fm2.getHeight() + 20;
 
             g.drawString(subText, subX, subY);
+            
+//            int highScore = db.getHighScore();
+//            g.drawString("High Score: " + highScore, 50, 50);
         }
     }
 
@@ -228,7 +233,9 @@ class GamePanelImpl extends GamePanel {
             resetGame();
         } else if (e.getKeyCode() == KeyEvent.VK_ESCAPE && gameOver) {
             if (timer != null) timer.stop();
-            frame.showMenu();
+            Menu menu = new Menu();
+            menu.setVisible(true);
+            frame.dispose();
         }
     }
 
@@ -243,7 +250,7 @@ class GamePanelImpl extends GamePanel {
         pipePassed.clear();
 
         if (characterImage != null) {
-            characterRect = new Rectangle(100, characterY, 100, 100);
+            characterRect = new Rectangle(80, characterY, 80, 80);
         } else {
             characterRect = new Rectangle(100, characterY, 50, 50);
         }

@@ -38,7 +38,7 @@ public class ChooseCharacter extends javax.swing.JFrame {
         getContentPane().setLayout(null);
 
         jButton1.setBackground(new java.awt.Color(204, 204, 204));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Press Start 2P", 0, 12)); // NOI18N
         jButton1.setText("Shark");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -49,7 +49,7 @@ public class ChooseCharacter extends javax.swing.JFrame {
         jButton1.setBounds(260, 510, 190, 60);
 
         jButton2.setBackground(new java.awt.Color(204, 204, 204));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Press Start 2P", 0, 10)); // NOI18N
         jButton2.setText("Bombardinocrocs");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
