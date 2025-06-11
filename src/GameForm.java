@@ -10,6 +10,9 @@ class GameForm extends JPanel implements ActionListener, KeyListener {
     private int countdown = 3;
     private boolean isCountingDown = true;
     
+    private Image backgroundImage;
+    private Image pipeImage;
+    
     public GameForm(FlepiBird frame, String karakterPath) {
         this.frame = frame;
         this.game = new Game(karakterPath);
@@ -17,6 +20,14 @@ class GameForm extends JPanel implements ActionListener, KeyListener {
         setBackground(Color.CYAN);
         setFocusable(true);
         addKeyListener(this);
+        
+        try {
+            backgroundImage = new ImageIcon(getClass().getResource("backgroundGame.png")).getImage();
+            pipeImage = new ImageIcon(getClass().getResource("ranjau.png")).getImage();
+        } catch (Exception ex) {
+            System.out.println("Gagal memuat gambar: " + ex.getMessage());
+        }
+        
         startCountdown();
     }
     
@@ -42,9 +53,15 @@ class GameForm extends JPanel implements ActionListener, KeyListener {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         
-        g.setColor(Color.CYAN);
-        g.fillRect(0, 0, getWidth(), getHeight());
+        // Gambar background
+        if (backgroundImage != null) {
+            g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), null);
+        } else {
+            g.setColor(Color.CYAN);
+            g.fillRect(0, 0, getWidth(), getHeight());
+        }
         
+        // Gambar karakter
         Character karakter = game.getKarakter();
         if (karakter.getImage() != null) {
             g.drawImage(karakter.getImage(), karakter.getX(), karakter.getY(), 80, 80, null);
@@ -53,9 +70,14 @@ class GameForm extends JPanel implements ActionListener, KeyListener {
             g.fillOval(karakter.getX(), karakter.getY(), 80, 80);
         }
         
-        g.setColor(Color.GREEN.darker());
+        // Gambar pipa (pakai gambar ranjau)
         for (Rintangan pipe : game.getRintangan()) {
-            g.fillRect(pipe.getX(), pipe.getY(), pipe.getLebar(), pipe.getTinggi());
+            if (pipeImage != null) {
+                g.drawImage(pipeImage, pipe.getX(), pipe.getY(), pipe.getLebar(), pipe.getTinggi(), null);
+            } else {
+                g.setColor(Color.GREEN.darker());
+                g.fillRect(pipe.getX(), pipe.getY(), pipe.getLebar(), pipe.getTinggi());
+            }
         }
         
         g.setColor(Color.BLACK);

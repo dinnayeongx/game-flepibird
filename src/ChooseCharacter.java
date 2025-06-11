@@ -81,7 +81,7 @@ public class ChooseCharacter extends javax.swing.JFrame {
         FLEPIBIRD.setBounds(0, 150, 1280, 79);
 
         jLabel1.setBackground(new java.awt.Color(204, 204, 204));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/backgroundFlepi2.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/backgroundGame.png"))); // NOI18N
         jLabel1.setMaximumSize(new java.awt.Dimension(1321, 720));
         jLabel1.setMinimumSize(new java.awt.Dimension(1321, 720));
         jLabel1.setPreferredSize(new java.awt.Dimension(1321, 720));

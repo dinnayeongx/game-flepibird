@@ -50,7 +50,7 @@ public class Menu extends javax.swing.JFrame {
         FLEPIBIRD.setFont(new java.awt.Font("Karmatic Arcade", 0, 72)); // NOI18N
         FLEPIBIRD.setForeground(new java.awt.Color(255, 255, 255));
         FLEPIBIRD.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        FLEPIBIRD.setText("FLEPIBIRD");
+        FLEPIBIRD.setText("FLEPI");
         FLEPIBIRD.setName(""); // NOI18N
         getContentPane().add(FLEPIBIRD);
         FLEPIBIRD.setBounds(0, 150, 1280, 79);
@@ -85,7 +85,7 @@ public class Menu extends javax.swing.JFrame {
         getContentPane().add(KeluarBtn);
         KeluarBtn.setBounds(552, 486, 172, 63);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/backgroundFlepi2.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/backgroundGame.png"))); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, 0, 1280, 720);
