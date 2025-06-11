@@ -105,7 +105,7 @@ public class Petunjuk extends javax.swing.JFrame {
         jPanel1.setBounds(220, 160, 840, 400);
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/backgroundFlepi2.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/backgroundGame.png"))); // NOI18N
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, 0, 1280, 720);
 
